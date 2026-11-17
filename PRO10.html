@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Eco fleet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>.ef-box{background:#fff;max-width:520px;margin:20px auto;padding:18px;border-radius:12px;border:2px solid #1b5e20;font-family:Arial,sans-serif;text-align:center}
+.ef-box input,.ef-box select{padding:9px;border:2px solid #1b5e20;border-radius:6px;margin:4px}
+.ef-btn{padding:9px 16px;border:none;border-radius:8px;background:#1b5e20;color:#fff;cursor:pointer;margin:4px}
+.ef-err{color:#c62828;font-size:.9rem;min-height:1.1em}
+  </style>
+</head>
+<html lang="en">
+    <body bgcolor="#aad563">
+
+       <table align="center"><tr><td align="center">
+        <img src="image/ecofleet.jpeg" alt="Eco fleet Logo" width="500" height="500">
+      </td></tr></table>
+    <h1 align="center"><strong>Electric Vehicle Fleet Management</strong></h1>
+    <h2 align="center"><b></b></h2><br>
+    <h3 align="center">Tracking, Maintaining, and Optimizing electric 
+      vehicles and their charging infrastructure</h3><br>
+    
+    <center><audio controls>
+  <source src="image/ecofleet audio_2.mp3" type="audio/mpeg">
+
+
+  Your browser does not support the audio tag.
+</audio></center>
+
+    <h2 align="center">What do we do?</h2><br>
+    <table align="center"><tr><td align="center">
+      <video width="640" height="360" controls>
+  <source src="image/movie.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video></td></tr></table>
+<h2 align="center">Locate Us</h2>
+<table align="center">
+  <tr>
+    <td align="center">
+<a href="https://maps.app.goo.gl/rtUda7qLUMR2dxw7A">
+  <img src="image/googlemaps.png" alt="Google maps location" width="400" height="400"></a>
+</td></tr></table>
+
+<table align="center"><tr><td align="center">
+<iframe 
+  width="560" 
+  height="400" 
+  src="https://form.svhrt.com/6aa04dcfa00a75349c4a8722" 
+  title="Website feedback" 
+  frameborder="0" 
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+  allowfullscreen>
+</iframe></td></tr></table>
+<br>
+
+<h2><a href="signinform.html">Sign In</a></h2>
+<h2><a href="PRO3.html">Log In</a></h2>
+<h2> <a href="feedbackform.html">Feedback form</a> </h2>
+
+<div class="ef-box">
+  <h2>Charging Simulator</h2>
+  <input type="text" id="vehicleName" placeholder="Vehicle name">
+  <button class="ef-btn" id="setNameBtn" onclick="setName()">Set name</button>
+  <p id="vehicleLabel">No vehicle selected.</p>
+  <h1 id="percent" style="font-size:2.2rem">0%</h1>
+  <button class="ef-btn" onclick="startCharge()">Start charging</button>
+  <button class="ef-btn" onclick="stopCharge()">Stop</button>
+  <hr>
+  <button class="ef-btn" onclick="startReminder()">Remind me in 3 seconds</button>
+  <button class="ef-btn" onclick="cancelReminder()">Cancel reminder</button>
+  <p id="reminder"></p>
+</div>
+
+<footer>
+  <p>Copyright 2026 by ecofleet Data. All Rights Reserved.</p>
+</footer>
+
+<script>
+var chargeTimer = null, reminderTimer = null, level = 0;
+function setName() {
+  var name = document.querySelector("#vehicleName").value;
+  document.querySelector("#vehicleLabel").textContent = name ? "Vehicle: " + name : "Please type a name.";
+}
+function startCharge() {
+  if (chargeTimer) return;
+  chargeTimer = setInterval(function () {
+    level += 5;
+    document.querySelector("#percent").textContent = level + "%";
+    if (level >= 100) stopCharge();
+  }, 500);
+}
+function stopCharge() { clearInterval(chargeTimer); chargeTimer = null; }
+function startReminder() {
+  var msg = document.querySelector("#reminder");
+  msg.textContent = "Waiting...";
+  reminderTimer = setTimeout(function () { msg.textContent = "Time to check the charger!"; }, 3000);
+}
+function cancelReminder() {
+  clearTimeout(reminderTimer);
+  document.querySelector("#reminder").textContent = "Reminder cancelled.";
+}
+</script>
+</body>
+</html>
